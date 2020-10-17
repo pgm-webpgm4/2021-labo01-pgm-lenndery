@@ -15,8 +15,8 @@ api.use(express.urlencoded({
 }));
 
 // import api handlers
-require('./api/author');
-require('./api/blog');
+require('./routes/author');
+require('./routes/blog');
 
 // start server
 const startServer = () => {
