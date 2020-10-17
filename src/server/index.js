@@ -3,17 +3,22 @@
  * 
  * TODO: add error catching
  */
+
+// import and define api
 const express = require('express'), api = express(), port = 5050;
 module.exports = api;
 
+// set handlers
 api.use(express.json());
 api.use(express.urlencoded({
     extended: true
 }));
 
-require('./api/Author');
-require('./api/Blog');
+// import api handlers
+require('./api/author');
+require('./api/blog');
 
+// start server
 const startServer = () => {
     return new Promise((resolve, reject) => {
         console.log("Starting the server...");
