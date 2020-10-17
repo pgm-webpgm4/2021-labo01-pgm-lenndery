@@ -4,6 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
+    "api": "NODE_ENV=development nodemon src/server",
+    "client": "NODE_ENV=development nodemon src/client",
     "dev": "NODE_ENV=development nodemon src/index.js",
     "prod": "NODE_ENV=production node src/index.js"
   },
@@ -12,9 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "nodemon": "^2.0.4",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.4"
   },
   "devDependencies": {
     "uuid": "^8.3.1"

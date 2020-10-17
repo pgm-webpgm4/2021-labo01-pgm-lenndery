@@ -33,6 +33,8 @@ const startServer = () => {
     })
 }
 
-module.exports = {
-    startServer
-};
+// module.exports = {
+//     startServer
+// };
+
+startServer();

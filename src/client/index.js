@@ -1,13 +1,14 @@
-/**
- * The Web Client
- */
+const express = require('express'),ui = express(),port = 8080;
+const App = require('./components/App');
+const Start = require('./components/Start');
 
-const express = require('express'),
-    ui = express(),
-    port = 8080;
+// require('./components/Posts')
+    
+ui.use(express.static('src/client/static'));
 
 ui.get('/', (req, res) => {
-    res.send('<h1>Hello World</1>')
+    const html = Start('<h1>Hello World</1>');
+    res.send(html);
 })
 
 const startClient = () => {
@@ -24,6 +25,8 @@ const startClient = () => {
     })
 }
 
-module.exports = {
-    startClient
-};
+startClient();
+
+// module.exports = {
+//     startClient
+// };
