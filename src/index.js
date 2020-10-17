@@ -2,7 +2,7 @@
  * Wrap the app together with server & client
  */
 
-const { startServer }= require('./server');
+const { startServer } = require('./server');
 const { startClient } = require('./client');
 
 /**

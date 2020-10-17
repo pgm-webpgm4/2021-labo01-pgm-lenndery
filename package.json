@@ -5,13 +5,16 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon src/index.js",
-    "prod": "NODE_ENV=production node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prod": "NODE_ENV=production node src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Lennert De Ryck",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "nodemon": "^2.0.4"
+  },
+  "devDependencies": {
+    "uuid": "^8.3.1"
   }
 }
