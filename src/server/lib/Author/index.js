@@ -19,12 +19,19 @@ class Author {
     
     addAuthor(data) {
         const authors = this.getAuthors(), id = uuid();
+        const ID = data.ID || id;
         
-        data.ID = id;
-        
+        data = {...data, ID};
         authors.push(data);
-        this.updateFile(data);
-        return { data }
+        this.updateFile(authors);
+        return { data };
+    }
+    
+    updateAuthor(ID, newData) {
+        const currentData = this.getAuthor(ID);
+        const update = {...currentData, ...newData};
+        this.removeAuthor(ID);
+        return this.addAuthor(update);
     }
     
     removeAuthor(ID) {
