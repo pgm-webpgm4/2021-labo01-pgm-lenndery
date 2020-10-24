@@ -6,10 +6,12 @@
 
 // import and define api
 const express = require('express'), api = express(), port = 5050;
+const cors = require('cors');
 module.exports = api;
 
 // set handlers
 api.use(express.json());
+api.use(cors());
 api.use(express.urlencoded({
     extended: true
 }));

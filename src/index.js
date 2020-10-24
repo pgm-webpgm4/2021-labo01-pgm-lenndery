@@ -3,10 +3,12 @@
  */
 
 const { startServer } = require('./server');
-const { startClient } = require('./client');
+// const { startClient } = require('./client');
 
 /**
  * Run the server, once started, start the client
  */
 
-startServer().then(() => { startClient() })
+startServer().then(() => { 
+    // startClient() 
+})
