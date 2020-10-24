@@ -1,0 +1,22 @@
+
+* {transition: all .3s ease;}
+
+a {text-decoration: none;}
+
+.btn {
+    display: flex;
+    align-items: center;
+    
+    > ion-icon {
+        margin-right: .6rem;
+    }
+}
+
+input.form-control {
+    &:focus-within,
+    &:focus,
+    & {
+        outline: none;
+        box-shadow: none;
+    }
+}

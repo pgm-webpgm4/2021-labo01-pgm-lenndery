@@ -1,28 +1,28 @@
 import React from 'react';
-import './App.css';
-import '../node_modules/bootstrap/scss/bootstrap.scss';
+import './App.scss';
 import Header from './components/Header';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import {Home} from './pages/index.js'
+import {Home, NewAuthor, NewPost} from './pages/index.js'
 
 const App = () => {
-  return (
-    <Router>
-      <div className="App">
-        <Header/>
-        <Route path='/' exact component={Home}></Route>
-        <Route path='/store' component={Store}></Route>
-      </div>
-    </Router>
-  );
-}
-
-const Store = () => {
-  return (
-    <div className="p-5">
-      <h1>Store</h1>
-    </div>
-  )
+    return (
+        <Router>
+        <div className="App h-100">
+            <div className="row h-100">
+                <div className="col-3">
+                    <div className="bg-primary h-100 w-100">
+                        <Header/>
+                    </div>
+                </div>
+                <div className="col">
+                    <Route path='/' exact component={Home}></Route>
+                    <Route path='/blog/create' exact component={NewPost}></Route>
+                    <Route path='/author/create' exact component={NewAuthor}></Route>
+                </div>
+            </div>
+        </div>
+        </Router>
+    );
 }
 
 export default App;
