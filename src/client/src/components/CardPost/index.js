@@ -12,11 +12,15 @@ const CardPost = ({props: {title, author, intro, fullUrl}}) => {
                 </div>
                 <div className="col d-flex justify-content-end">
                     <a className="btn btn-outline-primary mr-3" href={`/blog/${fullUrl}`}>Edit post</a>
-                    <a className="btn btn-outline-danger">Delete post</a>
+                    <a className="btn btn-outline-danger" onClick={({target}) => {removeCart(target)}}>Delete post</a>
                 </div>
             </div>
         </div>
     )
+}
+
+const removeCart = (target) => {
+    target.closest('.card').remove();
 }
 
 export {CardPost};
