@@ -4,11 +4,11 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "api": "NODE_ENV=development nodemon src/server",
-    "client": "NODE_ENV=development nodemon src/client",
-    "dev": "NODE_ENV=development nodemon src/index.js",
+    "api": "NODE_ENV=development src/server",
+    "client": "NODE_ENV=development src/client",
+    "dev": "NODE_ENV=development src/index.js",
     "prod": "NODE_ENV=production node src/index.js",
-    "build": "npm run api && cd src/client node react-scripts build"
+    "build": "npm run api & cd src/client node react-scripts build"
   },
   "keywords": [],
   "author": "Lennert De Ryck",
