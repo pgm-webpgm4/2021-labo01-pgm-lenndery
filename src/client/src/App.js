@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 import Header from './components/Header';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import {Home, NewAuthor, NewPost} from './pages/index.js'
+import {Home, NewAuthor, NewPost, UpdatePost, Authors, UpdateAuthors} from './pages/index.js'
 
 const App = () => {
     return (
@@ -17,7 +17,10 @@ const App = () => {
                 <div className="col">
                     <Route path='/' exact component={Home}></Route>
                     <Route path='/blog/create' exact component={NewPost}></Route>
-                    <Route path='/author/create' exact component={NewAuthor}></Route>
+                    <Route path='/blog/update/:id' component={UpdatePost}></Route>
+                    <Route path='/authors' exact component={Authors}></Route>
+                    <Route path='/authors/create' exact component={NewAuthor}></Route>
+                    <Route path='/authors/update/:id' component={UpdateAuthors}></Route>
                 </div>
             </div>
         </div>

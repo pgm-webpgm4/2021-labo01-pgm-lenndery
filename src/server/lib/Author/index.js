@@ -17,9 +17,22 @@ class Author {
         return authors.filter((author) => author.ID === ID).pop() || null;
     }
     
-    addAuthor(data) {
+    addAuthor(data, files) {
         const authors = this.getAuthors(), id = uuid();
         const ID = data.ID || id;
+        
+        
+        
+        if (!files || Object.keys(files).length === 0) {
+            console.log('No files were uploaded.');
+        } else {
+            let sampleFile = files.profilePicFile;
+            sampleFile.mv(`src/server/data/profilePics/${id}.jpg`, function(err) {
+                console.log(err)
+            });
+        } 
+        
+        
         
         data = {...data, ID};
         authors.push(data);

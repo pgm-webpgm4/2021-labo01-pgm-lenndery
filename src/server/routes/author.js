@@ -1,11 +1,16 @@
 const api = require('../index');
 const { Author } = require('../lib/Author');
+const fileUpload = require('express-fileupload');
+api.use(fileUpload({
+    useTempFiles : true,
+    tempFileDir : '/tmp/'
+}));
 
 // CREATE author
-api.post('/authors/create', ({ body }, res) => {
+api.post('/authors/create', ({ body, headers, originalUrl, files }, res) => {
     const author = new Author();
-    const added = author.addAuthor(body);
-    res.send(added);
+    const added = author.addAuthor(body, files);
+    res.redirect(headers.origin + originalUrl);
 })
 
 // READ all authors
@@ -23,10 +28,10 @@ api.get('/authors/:ID', ({ params: {ID} }, res) => {
 })
 
 // UPDATE author by ID
-api.put('/authors/update/:ID', ({ params: {ID}, body }, res) => {
+api.post('/authors/update/:ID', ({ params: {ID}, body, headers, originalUrl }, res) => {
     const authors = new Author();
     const result = authors.updateAuthor(ID, body);
-    res.send(result);
+    res.redirect(headers.origin + originalUrl);
 })
 
 // DELETE single author by ID

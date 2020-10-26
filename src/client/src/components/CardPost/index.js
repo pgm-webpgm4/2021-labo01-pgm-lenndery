@@ -1,6 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-const CardPost = ({props: {title, author, intro, fullUrl}}) => {
+const CardPost = ({props: {ID, title, author, intro, fullUrl}}) => {
     return (
         <div className="card p-3 mb-3">
             {/* <img src="..." className="card-img-top"></img> */}
@@ -11,15 +12,19 @@ const CardPost = ({props: {title, author, intro, fullUrl}}) => {
                     <p className="mb-0"><small>Door {author}</small></p>
                 </div>
                 <div className="col d-flex justify-content-end">
-                    <a className="btn btn-outline-primary mr-3" href={`/blog/${fullUrl}`}>Edit post</a>
-                    <a className="btn btn-outline-danger" onClick={({target}) => {removeCart(target)}}>Delete post</a>
+                    {/* <a className="btn btn-outline-primary mr-3" href={`/blog/${fullUrl}`}>Edit post</a> */}
+                    <Link to={`/blog/update/${fullUrl}`} className="btn btn-outline-primary mr-3">Edit post</Link>
+                    <a className="btn btn-outline-danger" onClick={({target}) => {removeCart(target, ID)}}>Delete post</a>
                 </div>
             </div>
         </div>
     )
 }
 
-const removeCart = (target) => {
+const removeCart = async (target, ID) => {
+    const resp = await fetch(`http://localhost:5050/blog/delete/${ID}`, {method: 'DELETE'});
+    const data = await resp.json();
+    console.log(data);
     target.closest('.card').remove();
 }
 

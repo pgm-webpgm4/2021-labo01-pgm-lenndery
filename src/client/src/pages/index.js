@@ -1,3 +1,6 @@
 export {Home} from './Home'
 export {NewPost} from './NewPost'
 export {NewAuthor} from './NewAuthor'
+export {UpdatePost} from './UpdatePost'
+export {Authors} from './Authors'
+export {UpdateAuthors} from './UpdateAuthors'

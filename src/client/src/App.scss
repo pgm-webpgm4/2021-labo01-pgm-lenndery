@@ -1,3 +1,5 @@
+@import './Forms.scss';
+
 
 * {transition: all .3s ease;}
 
@@ -12,11 +14,16 @@ a {text-decoration: none;}
     }
 }
 
-input.form-control {
+input.form-control, select.form-control, textarea.form-control {
     &:focus-within,
     &:focus,
     & {
         outline: none;
         box-shadow: none;
     }
+}
+
+ion-icon {
+    --ionicon-stroke-width: 50px;
+    font-size: 1.2rem;
 }

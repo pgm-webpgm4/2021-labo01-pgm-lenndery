@@ -5,9 +5,9 @@ const NewAuthor = () => {
     return (
         <Page>
             <h3 className="mb-4">New author</h3>
-            <form action="http://localhost:5050/author/create" method="post" target="_self">
+            <form action="http://localhost:5050/authors/create" method="post" target="_self" encType="multipart/form-data">
                 <label>
-                    <input type="text" className="form-control" name="name" placeholder=" "/>
+                    <input type="text" autoComplete="off" className="form-control" name="name" placeholder=" "/>
                     <span>Name</span>
                 </label>
                 <label>
@@ -15,9 +15,15 @@ const NewAuthor = () => {
                     <span>Picture</span>
                 </label>
                 <label>
-                    <input type="text" className="form-control" name="intro" placeholder=" "/>
-                    <span>Intro</span>
+                    <input type="file" className="form-control" name="profilePicFile" placeholder=" "/>
+                    <span>Picture File</span>
                 </label>
+                
+                
+                {/* <label>
+                    <input type="text" autoComplete="off" className="form-control" name="intro" placeholder=" "/>
+                    <span>Intro</span>
+                </label> */}
                 <button className="btn btn-primary" type="submit">Add author</button>
             </form>
         </Page>

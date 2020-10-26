@@ -1,3 +1,4 @@
 {
-    "prettier.enable": true
+    "prettier.enable": true,
+    "discord.enabled": true
 }

@@ -1,40 +1,39 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, setState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-import { Page } from '../../layouts';
-import './index.scss';
+import {Page} from '../../layouts';
 import { AuthorsSelect } from '../../components';
 
-const NewPost = () => {
-    const [authors, setAuthors] = useState([]);
-    
-    useEffect(() => {
-        const fetchData = async () => {
-            const resp = await fetch('http://localhost:5050/authors');
-            const data = await resp.json();
-            setAuthors(data);
-        }
-        fetchData()
-    }, [])
-    
+const UpdatePost = ({match: {params}}) => {
     const handleEditorChange = (content, editor) => {
         console.log('Content was updated:', content);
     }
     
+    const [post, updatePost] = useState([])
+    useEffect(() => {
+        const fetchData = async () => {
+            const resp = await fetch(`http://localhost:5050/blog/${params.id}`);
+            const data = await resp.json();
+            updatePost(data);
+            console.log(data);
+        }
+        fetchData();
+    }, [])
+    
     return (
-        <Page>    
-            <h3 className="mb-4">New post</h3>
-            <form action="http://localhost:5050/blog/create" method="post" target="_self">
+        <Page>
+            <h3 className="mb-4">Update post</h3>
+             <form action={`http://localhost:5050/blog/update/${params.id}`} method="post">
                 <div className="row">
                     <div className="col">
                         <label>
                             <span>Title</span>
-                            <input type="text" autoComplete="off" className="form-control" name="title" placeholder=" "/>
+                            <input type="text" autoComplete="off" className="form-control" name="title" defaultValue={post.title} placeholder=" "/>
                         </label>
                         <label className="h-100">
                             {/* <span>Content</span> */}
-                            {/* <textarea name="description" className="form-control h-100"></textarea> */}
+                            {/* <textarea name="description" className="form-control h-100" defaultValue={post.description}></textarea> */}
                             <Editor
-                                initialValue="<p>This is the initial content of the editor</p>"
+                                initialValue={post.description}
                                 textareaName='description'
                                 apiKey='7kk8r447f3yjkyy6f51wtv94sf2v8cj8j3en0zmh68b7zi4m'
                                 init={{
@@ -57,14 +56,14 @@ const NewPost = () => {
                     <div className="col-3">
                         <label>
                             <span>Author</span>
-                            <AuthorsSelect/>
+                            <AuthorsSelect selected={post.author}/>
                         </label>
                         <label>
                             <span>Intro</span>
-                            <textarea name="intro" className="form-control"></textarea>
+                            <textarea name="intro" className="form-control" defaultValue={post.intro}></textarea>
                         </label>
                         
-                        <button className="btn btn-primary w-100 justify-content-center" type="submit">Create post</button>
+                        <button className="btn btn-primary w-100 justify-content-center" type="submit">Update post</button>
                     </div>
                 </div>
                 
@@ -74,4 +73,4 @@ const NewPost = () => {
     )
 }
 
-export {NewPost}
+export { UpdatePost };

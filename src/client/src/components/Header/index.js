@@ -9,11 +9,11 @@ const Header = () => {
             <nav className="nav nav-pills flex-column">
                 <div className="flex-sm-fill nav-link active">  
                     <a href="/"><ion-icon name="document-text-outline"></ion-icon> Posts</a>
-                    <a href="/" className="btn btn-light"><ion-icon name="add-circle-outline"></ion-icon> Add post</a>
+                    <a href="/blog/create" className="btn btn-light"><ion-icon name="add-circle-outline"></ion-icon> Add post</a>
                 </div>
                 <div className="flex-sm-fill nav-link">  
-                    <a href="/"><ion-icon name="document-text-outline"></ion-icon> Authors</a>
-                    <a href="/" className="btn btn-light"><ion-icon name="add-circle-outline"></ion-icon>Add author</a>
+                    <a href="/authors"><ion-icon name="document-text-outline"></ion-icon> Authors</a>
+                    <a href="/authors/create" className="btn btn-light"><ion-icon name="add-circle-outline"></ion-icon> Add author</a>
                 </div>
             </nav>
         </header>

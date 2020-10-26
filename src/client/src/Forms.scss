@@ -1,0 +1,46 @@
+form {
+    label {
+        margin-bottom: 1rem;
+        position: relative;
+        display: block;
+        
+        span {
+            & + input,
+            & + select,
+            & + textarea {
+                margin-top: .6rem;
+            }
+        }
+        
+        input + span {
+            position: absolute;
+            top: 50%;
+            left: .4rem;
+            padding: 0rem .2rem 0rem .2rem;
+            border-radius: 3px;
+            transform: translateY(-50%);
+            background-color: white;
+            user-select: none;
+        }
+        
+        input::placeholder {
+            display: none;
+            opacity: 0;
+        }
+        
+        input {
+            &:not(:placeholder-shown) + span,
+            &:focus-within + span,
+            &:focus + span {
+                top: 0%;
+                font-size: .8rem;
+            }
+        }
+    }
+    
+    .tox.tox-tinymce {
+        border-radius: 0.25rem;
+        
+        &, * {transition: none;}
+    }
+}

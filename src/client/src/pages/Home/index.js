@@ -4,16 +4,31 @@ import { Page } from '../../layouts'
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
+    const [author, setAuthor] = useState([]);
     
     useEffect(() => {
         const fetchData = async () => {
-            const resp = await fetch('http://localhost:5050/blog');
-            const data = await resp.json();
-            setPosts(data);
+            const postResp = await fetch('http://localhost:5050/blog');
+            const posts = await postResp.json();
+            const authorResp = await fetch(`http://localhost:5050/authors`);
+            const authors = await authorResp.json();
+            posts.map(p => {
+                p.author = authors.filter(a => a.ID == p.author).pop().name;
+            })
+            console.log(posts);
+            setPosts(posts);
         }
         fetchData();
     }, [])
     
+    useEffect(() => {
+        const fetchData = async () => {
+            const resp = await fetch(`http://localhost:5050/authors/`);
+            const data = await resp.json();
+            setAuthor(data);
+        }
+        fetchData()
+    }, []);
     
     return (
         <Page>
@@ -21,7 +36,7 @@ const Home = () => {
                 <div> 
                     <h1 className="mb-0">Posts</h1>
                 </div>
-                <a className="btn btn-primary" href="/blog/create"><ion-icon name="create-outline"></ion-icon> Add post</a>
+                <a className="btn btn-primary" href="/blog/create"><ion-icon name="add-circle-outline"></ion-icon> Add post</a>
             </div>
             {posts ? posts.map(p => {
                 return <CardPost key={p.ID} props={p}></CardPost>

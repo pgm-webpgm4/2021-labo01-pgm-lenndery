@@ -2,10 +2,10 @@ const api = require('../index');
 const { Blog } = require('../lib/Blog');
 
 // CREATE post
-api.post('/blog/create', ({ body }, res) => {
+api.post('/blog/create', ({ body, headers, originalUrl }, res) => {
     const blog = new Blog();
     const added = blog.addBlog(body);
-    res.send(added);
+    res.redirect(headers.origin + originalUrl);
 })
 
 // READ all posts
@@ -24,10 +24,11 @@ api.get('/blog/:ID', ({ params: {ID} }, res) => {
 })
 
 // UPDATE post by ID
-api.put('/blog/update/:ID', ({ params: {ID}, body }, res) => {
+api.post('/blog/update/:ID', ({ params: {ID}, body, headers, originalUrl }, res) => {
+    console.log(body);
     const blog = new Blog();
     const result = blog.updateBlog(ID, body);
-    res.send(result);
+    res.redirect(headers.origin + originalUrl);
 })
 
 // DELETE single post by ID
