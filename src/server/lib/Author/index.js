@@ -21,7 +21,7 @@ class Author {
     addAuthor(data, files = []) {
         const authors = this.getAuthors(), id = uuid();
         const ID = data.ID || id;
-        let sampleFile = files?.profilePic;
+        let sampleFile = files.profilePic;
         
         if (!files || Object.keys(files).length === 0) {
             console.log('No files were uploaded.');
