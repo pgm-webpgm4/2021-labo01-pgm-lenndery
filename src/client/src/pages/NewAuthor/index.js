@@ -11,19 +11,9 @@ const NewAuthor = () => {
                     <span>Name</span>
                 </label>
                 <label>
-                    <input type="text" className="form-control" name="profilePic" placeholder=" "/>
-                    <span>Picture</span>
-                </label>
-                <label>
-                    <input type="file" className="form-control" name="profilePicFile" placeholder=" "/>
+                    <input type="file" className="form-control" name="profilePic" placeholder=" "/>
                     <span>Picture File</span>
                 </label>
-                
-                
-                {/* <label>
-                    <input type="text" autoComplete="off" className="form-control" name="intro" placeholder=" "/>
-                    <span>Intro</span>
-                </label> */}
                 <button className="btn btn-primary" type="submit">Add author</button>
             </form>
         </Page>

@@ -35,8 +35,5 @@ const startServer = () => {
     })
 }
 
-// module.exports = {
-//     startServer
-// };
-
+api.use(express.static('src/server/data'));
 startServer();

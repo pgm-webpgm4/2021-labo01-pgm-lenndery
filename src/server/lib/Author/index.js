@@ -1,6 +1,7 @@
 const { v4: uuid } = require('uuid');
 const fs = require('fs');
 const filePath = 'src/server/data/authors.json';
+const mime = require('mime-types')
 
 class Author {
     constructor() {
@@ -17,27 +18,26 @@ class Author {
         return authors.filter((author) => author.ID === ID).pop() || null;
     }
     
-    addAuthor(data, files) {
+    addAuthor(data, files = []) {
         const authors = this.getAuthors(), id = uuid();
         const ID = data.ID || id;
-        
-        
+        let sampleFile = files?.profilePic;
         
         if (!files || Object.keys(files).length === 0) {
             console.log('No files were uploaded.');
-        } else {
-            let sampleFile = files.profilePicFile;
-            sampleFile.mv(`src/server/data/profilePics/${id}.jpg`, function(err) {
-                console.log(err)
+            data = {...data, ID};
+            authors.push(data);
+            this.updateFile(authors);
+            return { data };
+        } else if (sampleFile) {
+            const ext = mime.extension(sampleFile.mimetype);
+            sampleFile.mv(`src/server/data/profilePics/${id}.${ext}`, (err) => {
+                data = {...data, ID, profilePic: `${id}.${ext}` };
+                authors.push(data);
+                this.updateFile(authors);
+                return { data };
             });
         } 
-        
-        
-        
-        data = {...data, ID};
-        authors.push(data);
-        this.updateFile(authors);
-        return { data };
     }
     
     updateAuthor(ID, newData) {
@@ -49,8 +49,10 @@ class Author {
     
     removeAuthor(ID) {
         const authors = this.getAuthors();
-        const result = authors.filter((author) => author.ID != ID);
-        this.updateFile(result);
+        const updated = authors.filter((author) => author.ID != ID);
+        const deleted = authors.find((author) => author.ID == ID).profilePic;
+        fs.unlinkSync(`src/server/data/profilePics/${deleted}`);
+        this.updateFile(updated);
         return { id: ID };
     }
     
@@ -64,6 +66,12 @@ class Author {
         return update
     }
 } 
+
+const uploadFile = () => {
+    return Promise((resolve, reject) => {
+        
+    })
+}
 
 module.exports = {
     Author
