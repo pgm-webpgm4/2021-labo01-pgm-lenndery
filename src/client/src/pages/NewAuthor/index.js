@@ -7,9 +7,9 @@ const NewAuthor = () => {
     const {register, handleSubmit, erros} = useForm();
     
     const onSubmit = async (data) => {
-        const fileData = await handleFiles(data.profilePic);
-        data = {...data, profilePic: await fileData};
-        console.log(data);
+        // const fileData = await handleFiles(data.profilePic);
+        // data = {...data, profilePic: await fileData};
+        // console.log(data);
         const sendRes = await fetch('http://localhost:5050/authors/create', {
             method: 'POST',
             body: JSON.stringify(data),
@@ -19,13 +19,14 @@ const NewAuthor = () => {
             },
         });
         const sendedData = await sendRes.json();
+        console.log(data);
         return sendedData;
     }
     
     return (
         <Page>
             <h3 className="mb-4">New author</h3>
-            <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+            <form action="http://localhost:5050/authors/create" method="POST" encType="multipart/form-data">
                 <label>
                     <input type="text" autoComplete="off" className="form-control" name="name" placeholder=" " ref={register}/>
                     <span>Name</span>
