@@ -50,10 +50,10 @@ class Author {
     removeAuthor(ID) {
         const authors = this.getAuthors();
         const updated = authors.filter((author) => author.ID != ID);
-        // const deleted = authors.find((author) => author.ID == ID).profilePic;
-        // try {
-        //     fs.unlinkSync(`src/server/data/profilePics/${deleted}`);
-        // } catch (err) {console.log(err)};
+        const deleted = authors.find((author) => author.ID == ID).profilePic;
+        try {
+            fs.unlinkSync(`src/server/data/profilePics/${deleted}`);
+        } catch (err) {console.log(err)};
         this.updateFile(updated);
         return { id: ID };
     }

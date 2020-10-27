@@ -14,14 +14,14 @@ const CardPost = ({props: {ID, title, author, intro, fullUrl}}) => {
                 <div className="col d-flex justify-content-end">
                     {/* <a className="btn btn-outline-primary mr-3" href={`/blog/${fullUrl}`}>Edit post</a> */}
                     <Link to={`/blog/update/${fullUrl}`} className="btn btn-outline-primary mr-3">Edit post</Link>
-                    <a className="btn btn-outline-danger" onClick={({target}) => {removeCart(target, ID)}}>Delete post</a>
+                    <a className="btn btn-outline-danger" onClick={({target}) => {removeCard(target, ID)}}>Delete post</a>
                 </div>
             </div>
         </div>
     )
 }
 
-const removeCart = async (target, ID) => {
+const removeCard = async (target, ID) => {
     const resp = await fetch(`http://localhost:5050/blog/delete/${ID}`, {method: 'DELETE'});
     const data = await resp.json();
     console.log(data);

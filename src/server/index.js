@@ -9,9 +9,24 @@ const express = require('express'), api = express(), port = 5050;
 const cors = require('cors');
 module.exports = api;
 
+const corsOpts = {
+  origin: '*',
+
+  methods: [
+    'GET',
+    'POST',
+    'DELETE',
+    'PUT'
+  ],
+
+  allowedHeaders: [
+    'Content-Type',
+  ],
+};
+
 // set handlers
 api.use(express.json());
-api.use(cors());
+api.use(cors(corsOpts));
 api.use(express.urlencoded({
     extended: true
 }));

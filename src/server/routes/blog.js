@@ -3,9 +3,11 @@ const { Blog } = require('../lib/Blog');
 
 // CREATE post
 api.post('/blog/create', ({ body, headers, originalUrl }, res) => {
+    console.log(body)
     const blog = new Blog();
     const added = blog.addBlog(body);
-    res.redirect(headers.origin + originalUrl);
+    res.send(added);
+    // res.redirect(headers.origin + originalUrl);
 })
 
 // READ all posts

@@ -8,9 +8,11 @@ api.use(fileUpload({
 
 // CREATE author
 api.post('/authors/create', ({ body, headers, originalUrl, files }, res) => {
+    console.log(body)
     const author = new Author();
-    const added = author.addAuthor(body, files);
-    res.redirect(headers.origin + originalUrl);
+    const added = author.addAuthor(body);
+    res.send(added);
+    // res.redirect(headers.origin + originalUrl);
 })
 
 // READ all authors
