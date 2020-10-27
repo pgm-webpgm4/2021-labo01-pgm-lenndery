@@ -23,7 +23,7 @@ class Blog {
     
     addBlog(data) {
         const blogs = this.getBlogs(), id = uuid(); // get posts and define id
-        const ID = data.ID || id, fullUrl = data.fullUrl || id, publishedOn = new Date(); // set some data
+        const ID = data.ID || id, fullUrl = data.fullUrl || id, publishedOn = data.publishedOn || new Date(); // set some data
         
         data = {...data, ID, fullUrl, publishedOn} // merge data
         
